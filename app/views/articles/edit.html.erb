@@ -1,4 +1,4 @@
-<h1> create new artcile </h1>
+<h1> Edit Article </h1>
 
 <% if @article.errors.any? %>
   <h2>The following errors prevented the article from being saved</h2>
@@ -10,7 +10,7 @@
 <% end %>
 
 
-<%= form_with scope: :article, url: articles_path, local: true do |f| %>
+<%= form_with(model: @article, local:true) do |f| %>
 
 	<p> 
 		<%= f.label :title %> <br/>
