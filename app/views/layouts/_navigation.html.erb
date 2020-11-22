@@ -15,7 +15,9 @@
           Articles
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "Create New Article", new_article_path, class: "dropdown-item"%>
+        	<%if logged_in?%>
+            <%= link_to "Create New Article", new_article_path, class: "dropdown-item"%>
+          <%end%>
           <%= link_to "View Articles", articles_path, class: "dropdown-item"%>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
@@ -23,8 +25,14 @@
       </li>
 
        <% if logged_in?%>
-      <li class="nav-item">
-        <%= link_to current_user.username, user_path(current_user), class: "nav-link" %>
+       <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Profile [<%= current_user.username%>]
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to "View your profile", user_path(current_user), class: "dropdown-item"%>
+          <%= link_to "Edit your provile", edit_user_path(current_user), class: "dropdown-item"%>
+        </div>
       </li>
        <li class="nav-item">
         <%= link_to 'Logout', login_path, class: "nav-link", method: :delete %>
