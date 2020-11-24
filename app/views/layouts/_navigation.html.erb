@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <%= link_to "|| Blog Me #2 ||", root_path, class: "navbar_brand", id: "logo"%>
+  <%= link_to "|| BlogMee||", root_path, class: "navbar_brand", id: "logo"%>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -20,18 +20,18 @@
           <%end%>
           <%= link_to "View Articles", articles_path, class: "dropdown-item"%>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
         </div>
       </li>
 
        <% if logged_in?%>
        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Profile [<%= current_user.username%>]
+         <%= "(Admin)" if current_user.admin? %>  Profile [<%= current_user.username%>] 
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to "View your profile", user_path(current_user), class: "dropdown-item"%>
-          <%= link_to "Edit your provile", edit_user_path(current_user), class: "dropdown-item"%>
+          <%= link_to "Edit your profile", edit_user_path(current_user), class: "dropdown-item"%>
+          <%= link_to "Delete profile", user_path(current_user), class: "dropdown-item text-danger", method: :delete, data: { confirm: "Are you sure?" } %> 
         </div>
       </li>
        <li class="nav-item">

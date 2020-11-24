@@ -20,9 +20,17 @@
 						<p class="card-text"><%= pluralize(user.articles.count, "article")%></p>
 						<%= link_to "View", user, class: "btn btn-outline-info" %> 
 												
-					<%if logged_in? && user == current_user%>
-						<%= link_to "Edit Profile", edit_user_path(user), class: "btn btn-outline-info" %> 
+					<%if logged_in? %>
+						<% if user == current_user%>
+							<%= link_to "Edit Profile", edit_user_path(user), class: "btn btn-outline-info" %> 
+						<%end%>
+						<% if current_user.admin?%>
+						<%= link_to "Delete user", user_path(user), class: "btn btn-outline-danger", method: :delete,
+						data: {confirm: "Are you want to delete the user account and all associated objects?"}%>
+						<%end%>
 					<%end%>
+
+
 					</div>
 						<div class="card-footer text-muted">
 							<small>Joined <%= time_ago_in_words(user.created_at)%> ago,
